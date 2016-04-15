@@ -143,7 +143,15 @@ static float buttonHeight = 45.f;
 #pragma mark -
 #pragma mark - hid this view
 - (void) disMissAlertView {
-    [UIView animateWithDuration:_isAnimate?0.1:0 animations:^{
+
+    CGAffineTransform  transform;
+    transform = CGAffineTransformScale(self.transform,1.2,1.2);
+    [UIView beginAnimations:@"scale" context:nil];
+    [UIView setAnimationDuration:_isAnimate?0.2:0];
+    [UIView setAnimationDelegate:self];
+    [self setTransform:transform];
+    [UIView commitAnimations];
+    [UIView animateWithDuration:_isAnimate?0.2:0 animations:^{
         [self setAlpha:0];
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
@@ -155,7 +163,8 @@ static float buttonHeight = 45.f;
 - (void)showInView:(UIView *)view {
     [view addSubview:self];
     [self setAlpha:0];
-    [UIView animateWithDuration:_isAnimate?0.1:0 animations:^{
+
+    [UIView animateWithDuration:_isAnimate?0.2:0 animations:^{
         [self setAlpha:1];
     } completion:^(BOOL finished) {
     }];
