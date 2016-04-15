@@ -69,8 +69,7 @@ static float buttonHeight = 45.f;
 
 
     float buttonCenterY =_titleLabelToTop.constant + _titleLabel.frame.size.height + _messageLabelToTitleLabel.constant + _messageLabel.frame.size.height + 50;
-    float buttonSeparat = 15;             //button之间的间距
-    float equalDifference = 65.f;      //等差 循环创建Button时候用到
+    float buttonSeparat = 15;             //两个button之间的间距的一半
 
     NSLog(@"========%f", _messageLabel.frame.size.height);
 
@@ -83,10 +82,7 @@ static float buttonHeight = 45.f;
             }
             float buttonWidth = (kScreenWidth - 100 - ((float)_numberOfButton - 1) * buttonSeparat) /(float) _numberOfButton;
             buttonWidth = buttonWidth>132 ? 132 : (kScreenWidth - 100 - ((float)_numberOfButton - 1) * buttonSeparat) /(float) _numberOfButton;
-            if (_numberOfButton > 2) {
-                equalDifference = buttonWidth / 2 + buttonSeparat;
-            }
-            float buttonCenterX = (self.center.x-20 -(_numberOfButton-1)*equalDifference) + i*(buttonWidth + 2 * buttonSeparat);
+            float buttonCenterX = (self.center.x - 20 -(_numberOfButton-1)*(buttonSeparat + buttonWidth/2) + i*(buttonWidth + 2 * buttonSeparat));
             [self createButtonWtihButtonTag:cancelButtonTitle ? i : i+1
                                                  withFrame:CGRectMake(0, 0, buttonWidth, buttonHeight)
                                                        center:CGPointMake(buttonCenterX, buttonCenterY)

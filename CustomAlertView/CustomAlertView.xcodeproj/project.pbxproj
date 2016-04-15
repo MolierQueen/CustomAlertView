@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A71528021CBF3CE1004A5AF2 /* CustomAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A71528011CBF3CE1004A5AF2 /* CustomAlertView.xib */; };
-		A7289F851CBFB891008DE439 /* 订单管理-进行中_spec.png in Resources */ = {isa = PBXBuildFile; fileRef = A7289F841CBFB891008DE439 /* 订单管理-进行中_spec.png */; };
 		A76F99A31CBE524C00A2C3AF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F99A21CBE524C00A2C3AF /* main.m */; };
 		A76F99A61CBE524C00A2C3AF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F99A51CBE524C00A2C3AF /* AppDelegate.m */; };
 		A76F99A91CBE524C00A2C3AF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76F99A81CBE524C00A2C3AF /* ViewController.m */; };
@@ -39,7 +38,6 @@
 
 /* Begin PBXFileReference section */
 		A71528011CBF3CE1004A5AF2 /* CustomAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomAlertView.xib; sourceTree = "<group>"; };
-		A7289F841CBFB891008DE439 /* 订单管理-进行中_spec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "订单管理-进行中_spec.png"; sourceTree = "<group>"; };
 		A76F999E1CBE524B00A2C3AF /* CustomAlertView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomAlertView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A76F99A21CBE524C00A2C3AF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A76F99A41CBE524C00A2C3AF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 		A76F99A01CBE524C00A2C3AF /* CustomAlertView */ = {
 			isa = PBXGroup;
 			children = (
-				A7289F841CBFB891008DE439 /* 订单管理-进行中_spec.png */,
 				A76F99A41CBE524C00A2C3AF /* AppDelegate.h */,
 				A76F99A51CBE524C00A2C3AF /* AppDelegate.m */,
 				A76F99A71CBE524C00A2C3AF /* ViewController.h */,
@@ -258,7 +255,6 @@
 				A76F99AE1CBE524C00A2C3AF /* Assets.xcassets in Resources */,
 				A71528021CBF3CE1004A5AF2 /* CustomAlertView.xib in Resources */,
 				A76F99AC1CBE524C00A2C3AF /* Main.storyboard in Resources */,
-				A7289F851CBFB891008DE439 /* 订单管理-进行中_spec.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

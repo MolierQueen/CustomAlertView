@@ -31,7 +31,8 @@
 }
 
 - (void) buttonAction:(UIButton * )sender {
-    _customView  = [[CustomAlertView alloc] initWithTitle:@"《笑傲江湖》" andMessage:@"东方不败抱着自己杀死的任夫" andCancelButtonTitle:@"不好看不看了" andOtherButttonTitlesArr:@[@"真牛逼我去看"]];
+    _customView  = [[CustomAlertView alloc] initWithTitle:@"《笑傲江湖》" andMessage:@"的任夫东方不败抱着自己杀死的任夫东方不败抱着自己杀死的任夫东方不败抱着自己杀死的任夫" andCancelButtonTitle:nil andOtherButttonTitlesArr:@[@"真牛逼我去看"]];
+    [_customView setBackGroundImage:[UIImage imageNamed:@"beijing"]];
     [_customView showInView:self.view withBlock:^(NSInteger buttonTag) {
         NSLog(@"%d", buttonTag);
     }];
