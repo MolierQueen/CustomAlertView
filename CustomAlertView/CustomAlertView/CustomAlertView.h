@@ -8,22 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol CustomAlertViewDelegate <NSObject>
-
-@optional
-
 /**
- *  the button action which on the alertView. cancleButton's tag is 0 
+ *  button action
  *
- *  @param buttonAtg button的tag
+ *  @param NSInteger button tag
  */
-- (void) customAlertViewButtonsAction:(NSInteger)buttonAtg;
+typedef void(^buttonActionBlock)(NSInteger buttonTag);
 
-@end
 
 @interface CustomAlertView : UIView
 
-@property (nonatomic, assign) id<CustomAlertViewDelegate> delegate;
+@property (nonatomic, copy) buttonActionBlock actionWithButton;
 
 /**
  *  the big background alpha  default is 0;     0~1
@@ -82,15 +77,13 @@
  *  @param message         AlertView information
  *  @param cancelButtonTitle  cancel button title
  *  @param OtherButtton  Titles other button's title you need to give it a arr with string value
- *  @param delegate CustomAlertView delegate
  *
  *  @return return self
  */
 -(instancetype) initWithTitle:( NSString * )title
                            andMessage:( NSString * )message
             andCancelButtonTitle:( NSString * )cancelButtonTitle
-   andOtherButttonTitlesArr:( NSArray < NSString * > *)OtherButttonTitles
-                          andDelegate:(id<CustomAlertViewDelegate>)delegate;
+   andOtherButttonTitlesArr:( NSArray < NSString * > *)OtherButttonTitles;
 
 /**
  *  to dismiss alertView
@@ -101,6 +94,7 @@
  *  to show this alertView in your view
  *
  *  @param view your view
+ *  @param blockAction  to return back the button action;
  */
-- (void) showInView:(UIView*)view;
+- (void) showInView:(UIView*)view withBlock:(buttonActionBlock)blockAction;
 @end

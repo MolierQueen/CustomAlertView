@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "CustomAlertView.h"
 
-@interface ViewController ()<CustomAlertViewDelegate>
+@interface ViewController ()
 @property (nonatomic, strong) CustomAlertView * customView;
 
 @end
@@ -31,12 +31,10 @@
 }
 
 - (void) buttonAction:(UIButton * )sender {
-    _customView  = [[CustomAlertView alloc] initWithTitle:@"《笑傲江湖》" andMessage:@"东方不败抱着自己杀死的任夫" andCancelButtonTitle:@"不好看不看了" andOtherButttonTitlesArr:@[@"真牛逼我去看"] andDelegate:self];
-    [_customView showInView:self.view];
-}
-
--(void)customAlertViewButtonsAction:(NSInteger)buttonAtg {
-    NSLog(@"我点击了 %ld", (long)buttonAtg);
+    _customView  = [[CustomAlertView alloc] initWithTitle:@"《笑傲江湖》" andMessage:@"东方不败抱着自己杀死的任夫" andCancelButtonTitle:@"不好看不看了" andOtherButttonTitlesArr:@[@"真牛逼我去看"]];
+    [_customView showInView:self.view withBlock:^(NSInteger buttonTag) {
+        NSLog(@"%d", buttonTag);
+    }];
 }
 
 

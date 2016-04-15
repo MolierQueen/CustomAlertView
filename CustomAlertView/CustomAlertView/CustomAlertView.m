@@ -35,12 +35,10 @@ static float buttonHeight = 45.f;
 -(instancetype)initWithTitle:(NSString *)title
                           andMessage:(NSString *)message
            andCancelButtonTitle:(NSString *)cancelButtonTitle
-  andOtherButttonTitlesArr:(NSArray<NSString *> *)OtherButttonTitles
-                         andDelegate:(id<CustomAlertViewDelegate>)delegate {
+  andOtherButttonTitlesArr:(NSArray<NSString *> *)OtherButttonTitles {
     if (self = [super init]) {
         self = [[[NSBundle mainBundle] loadNibNamed:@"CustomAlertView" owner:nil options:nil] firstObject];
     }
-    self.delegate = delegate;
     [self setFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     self.isAnimate = YES;
 
@@ -134,9 +132,7 @@ static float buttonHeight = 45.f;
 #pragma mark -
 #pragma mark - buttonAction
 - (void) buttonAction:(UIButton*) sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(customAlertViewButtonsAction:)]) {
-        [self.delegate customAlertViewButtonsAction:sender.tag];
-    }
+    self.actionWithButton(sender.tag);
     [self disMissAlertView];
 }
 
@@ -160,7 +156,8 @@ static float buttonHeight = 45.f;
 
 #pragma mark -
 #pragma mark - to show this alertView
-- (void)showInView:(UIView *)view {
+- (void) showInView:(UIView*)view withBlock:(buttonActionBlock)blockAction {
+    self.actionWithButton = blockAction;
     [view addSubview:self];
     [self setAlpha:0];
 
