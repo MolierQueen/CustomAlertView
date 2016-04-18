@@ -128,7 +128,9 @@ static float buttonHeight = 45.f;
 #pragma mark -
 #pragma mark - buttonAction
 - (void) buttonAction:(UIButton*) sender {
-    self.actionWithButton(sender.tag);
+    if(self.actionWithButton) {
+        self.actionWithButton(sender.tag);
+    }
     [self disMissAlertView];
 }
 
@@ -153,7 +155,9 @@ static float buttonHeight = 45.f;
 #pragma mark -
 #pragma mark - to show this alertView
 - (void) showInView:(UIView*)view withBlock:(buttonActionBlock)blockAction {
-    self.actionWithButton = blockAction;
+    if (blockAction) {
+        self.actionWithButton = blockAction;
+    }
     [view addSubview:self];
     [self setAlpha:0];
 

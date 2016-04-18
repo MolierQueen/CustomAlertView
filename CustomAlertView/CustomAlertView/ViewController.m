@@ -31,10 +31,13 @@
 }
 
 - (void) buttonAction:(UIButton * )sender {
-    _customView  = [[CustomAlertView alloc] initWithTitle:@"《笑傲江湖》" andMessage:@"的任夫东方不败抱着自己杀死的任夫东方不败抱着自己杀死的任夫东方不败抱着自己杀死的任夫" andCancelButtonTitle:nil andOtherButttonTitlesArr:@[@"真牛逼我去看"]];
+    _customView  = [[CustomAlertView alloc] initWithTitle:@"《笑傲江湖》"
+                                                                       andMessage:@"天下风云出我辈 \n一入江湖岁月催 \n皇图霸业谈笑中 \n不胜人生一场醉 \n提剑跨骑挥鬼雨 \n白骨如山鸟惊飞 \n尘事如潮人如水 \n只叹江湖几人回"
+                                                        andCancelButtonTitle:@"不感兴趣"
+                                                andOtherButttonTitlesArr:@[@"我去看看"]];
     [_customView setBackGroundImage:[UIImage imageNamed:@"beijing"]];
     [_customView showInView:self.view withBlock:^(NSInteger buttonTag) {
-        NSLog(@"%d", buttonTag);
+        NSLog(@"%ld", (long)buttonTag);
     }];
 }
 
