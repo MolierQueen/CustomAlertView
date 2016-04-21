@@ -158,7 +158,7 @@ static float buttonHeight = 45.f;
     if (blockAction) {
         self.actionWithButton = blockAction;
     }
-    [view addSubview:self];
+    [[[UIApplication sharedApplication].delegate window] addSubview:self];
     [self setAlpha:0];
 
     [UIView animateWithDuration:_isAnimate?0.2:0 animations:^{
