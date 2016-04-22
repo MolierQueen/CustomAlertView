@@ -16,9 +16,19 @@
 typedef void(^buttonActionBlock)(NSInteger buttonTag);
 
 
+typedef NS_ENUM(NSInteger, CustomAlertViewAimateType) {
+
+    CustomAlertViewAimateTypeOne = 0,
+
+    CustomAlertViewAimateTypeTwo
+};
+
+
 @interface CustomAlertView : UIView
 
 @property (nonatomic, copy) buttonActionBlock actionWithButton;
+
+@property (nonatomic, assign) CustomAlertViewAimateType animateType;
 
 /**
  *  the big background alpha  default is 0;     0~1

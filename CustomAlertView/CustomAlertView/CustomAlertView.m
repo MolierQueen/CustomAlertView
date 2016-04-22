@@ -131,25 +131,7 @@ static float buttonHeight = 45.f;
     if(self.actionWithButton) {
         self.actionWithButton(sender.tag);
     }
-    [self disMissAlertView];
-}
-
-#pragma mark -
-#pragma mark - hid this view
-- (void) disMissAlertView {
-
-    CGAffineTransform  transform;
-    transform = CGAffineTransformScale(self.transform,1.2,1.2);
-    [UIView beginAnimations:@"scale" context:nil];
-    [UIView setAnimationDuration:_isAnimate?0.2:0];
-    [UIView setAnimationDelegate:self];
-    [self setTransform:transform];
-    [UIView commitAnimations];
-    [UIView animateWithDuration:_isAnimate?0.2:0 animations:^{
-        [self setAlpha:0];
-    } completion:^(BOOL finished) {
-        [self removeFromSuperview];
-    }];
+    [self dismissAnimateWithType:self.animateType];
 }
 
 #pragma mark -
@@ -158,15 +140,92 @@ static float buttonHeight = 45.f;
     if (blockAction) {
         self.actionWithButton = blockAction;
     }
-    [[[UIApplication sharedApplication].delegate window] addSubview:self];
-    [self setAlpha:0];
-
-    [UIView animateWithDuration:_isAnimate?0.2:0 animations:^{
-        [self setAlpha:1];
-    } completion:^(BOOL finished) {
-    }];
+    [self showAnimateWithType:self.animateType];
 }
 
+#pragma mark -
+#pragma mark - to show this alertView with animate
+- (void)showAnimateWithType:(CustomAlertViewAimateType)type {
+    [[[UIApplication sharedApplication].delegate window] addSubview:self];
+    if (type) {
+        [self setCenter:CGPointMake(self.center.x, 0)];
+        [self setAlpha:0];
+        [UIView animateWithDuration:_isAnimate?0.3:0 animations:^{
+            [self setAlpha:1];
+            [self setCenter:CGPointMake(self.center.x, kScreenHeight/2)];
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.3 animations:^{
+                [self setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.4]];
+            } completion:^(BOOL finished) {
+            }];
+        }];
+    } else {
+        [self setAlpha:0];
+        [UIView animateWithDuration:_isAnimate?0.2:0 animations:^{
+            [self setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.4]];
+            [self setAlpha:1];
+        } completion:^(BOOL finished) {
+        }];
+    }
+
+}
+
+#pragma mark -
+#pragma mark - hid this view
+- (void)dismissAnimateWithType:(CustomAlertViewAimateType)type {
+    if (type) {
+        [self setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0]];
+        [UIView animateWithDuration:_isAnimate?0.5:0 animations:^{
+            [self setCenter:CGPointMake(self.center.x, kScreenHeight)];
+            [self setAlpha:0];
+        } completion:^(BOOL finished) {
+            [self removeFromSuperview];
+        }];
+        [self.layer addAnimation:[self rotation:_isAnimate?0.5:0 degree:0.5 direction:3 repeatCount:0] forKey:nil];
+    } else {
+        CGAffineTransform  transform;
+        transform = CGAffineTransformScale(self.transform,1.2,1.2);
+        [UIView beginAnimations:@"scale" context:nil];
+        [UIView setAnimationDuration:_isAnimate?0.3:0];
+        [UIView setAnimationDelegate:self];
+        [self setTransform:transform];
+        [UIView commitAnimations];
+        [UIView animateWithDuration:_isAnimate?0.5:0 animations:^{
+            [self setAlpha:0];
+        } completion:^(BOOL finished) {
+            [self removeFromSuperview];
+        }];
+    }
+}
+
+#pragma mark - animate1
+- (void) showAnimate:(UIView*)view{
+    CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    animation.duration = _isAnimate?0.5:0;
+    NSMutableArray *values = [NSMutableArray array];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)]];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2, 1.2, 1.0)]];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.9, 0.9, 1.0)]];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1.0)]];
+
+    animation.values = values;
+    [view.layer addAnimation:animation forKey:nil];
+}
+
+#pragma mark - animate2
+-( CABasicAnimation *)rotation:( float )dur degree:( float )degree direction:( int )direction repeatCount:( int )repeatCount
+{
+    CATransform3D rotationTransform = CATransform3DMakeRotation (degree, 0 , 0 , direction);
+    CABasicAnimation *animation = [ CABasicAnimation animationWithKeyPath : @"transform" ];
+    animation. toValue = [ NSValue valueWithCATransform3D :rotationTransform];
+    animation. duration   =  dur;
+    animation. autoreverses = NO ;
+    animation. cumulative = NO ;
+    animation. fillMode = kCAFillModeForwards ;
+    animation. repeatCount = repeatCount;
+    animation. delegate = self ;
+    return animation;
+}
 
 #pragma mark -
 #pragma mark - config background alpha

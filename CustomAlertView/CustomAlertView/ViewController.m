@@ -36,6 +36,7 @@
                                                         andCancelButtonTitle:@"不感兴趣"
                                                 andOtherButttonTitlesArr:@[@"我去看看"]];
     [_customView setBackGroundImage:[UIImage imageNamed:@"beijing"]];
+    [_customView setAnimateType:1];
     [_customView showInView:self.view withBlock:^(NSInteger buttonTag) {
         NSLog(@"%ld", (long)buttonTag);
     }];
